@@ -3,6 +3,7 @@ import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { connect } from 'react-redux';
 import { getItems, deleteItem } from '../actions/itemActions';
+import EditItemModal from './EditItemModal';
 import PropTypes from 'prop-types';
 
 class ShoppingList extends React.Component {
@@ -28,17 +29,18 @@ class ShoppingList extends React.Component {
                         // }));
                     }
                 }}>Add Item</Button> */}
-                <ListGroup title="List of Items">
+                <ListGroup>
                     <TransitionGroup className="shopping-list">
                         {items.map(({ _id, name}) => (
                             <CSSTransition key={_id} timeout={500} classNames="fade">
                                 <ListGroupItem>
-                                    <Button className="remove-btn" 
+                                    <Button className="shopping-btn" 
                                     color="danger" 
                                     size="sm" 
                                     onClick={this.onDeleteClick.bind(this, _id)}>
-                                    &times;
+                                    Delete
                                     </Button>
+                                    <EditItemModal id={_id} name={name} />
                                     {name}
                                 </ListGroupItem>
                             </CSSTransition>

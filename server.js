@@ -5,6 +5,10 @@ const items = require('./routes/api/items');
 
 const app = express();
 
+// For local development
+// const environment = process.env.NODE_ENV;
+
+// For heroku
 const environment = process.env.NODE_ENV || 'production';
 
 // Middleware to serve json (bodyparser)

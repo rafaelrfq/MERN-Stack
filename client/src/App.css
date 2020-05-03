@@ -1,5 +1,6 @@
-.remove-btn {
+.shopping-btn {
     margin-right: 0.5rem;
+    display: inline-block;
 }
 
 .fade-enter {
