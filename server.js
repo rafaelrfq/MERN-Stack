@@ -9,10 +9,10 @@ const auth = require('./routes/api/auth');
 const app = express();
 
 // For local development
-const environment = process.env.NODE_ENV;
+// const environment = process.env.NODE_ENV;
 
 // For heroku
-// const environment = process.env.NODE_ENV || 'production';
+const environment = process.env.NODE_ENV || 'production';
 
 // Middleware to serve json (bodyparser)
 app.use(express.json());
