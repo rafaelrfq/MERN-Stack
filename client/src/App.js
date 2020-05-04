@@ -7,19 +7,28 @@ import ItemModal from './components/ItemModal';
 import { Container } from 'reactstrap';
 import { Provider } from 'react-redux';
 import store from './store';
+import { loadUser } from './actions/authActions';
 
-function App() {
-  return (
-    <div>
-      <Provider store={store}>
-        <AppNavbar />
-        <Container>
-          <ItemModal />
-          <ShoppingList />
-        </Container>
-      </Provider>
-    </div>
-  );
+class App extends React.Component {
+  
+  componentDidMount() {
+    store.dispatch(loadUser());
+  }
+
+  render() {
+    return (
+      <div>
+        <Provider store={store}>
+          <AppNavbar />
+          <Container>
+            <ItemModal />
+            <ShoppingList />
+          </Container>
+        </Provider>
+      </div>
+    );
+  }
+  
 }
 
 export default App;

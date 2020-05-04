@@ -34,12 +34,12 @@ class ShoppingList extends React.Component {
                         {items.map(({ _id, name}) => (
                             <CSSTransition key={_id} timeout={500} classNames="fade">
                                 <ListGroupItem>
-                                    <Button className="shopping-btn" 
+                                    { this.props.isAuthenticated ? <Button className="shopping-btn" 
                                     color="danger" 
                                     size="sm" 
                                     onClick={this.onDeleteClick.bind(this, _id)}>
                                     Delete
-                                    </Button>
+                                    </Button> : ''}
                                     <EditItemModal id={_id} name={name} />
                                     {name}
                                 </ListGroupItem>
@@ -55,11 +55,13 @@ class ShoppingList extends React.Component {
 
 ShoppingList.propTypes = {
     getItems: PropTypes.func.isRequired,
-    item: PropTypes.object.isRequired
+    item: PropTypes.object.isRequired,
+    isAuthenticated: PropTypes.bool
 }
 
 const mapStateToProps = (state) => ({
-    item: state.item
+    item: state.item,
+    isAuthenticated: state.auth.isAuthenticated
 });
 
 export default connect(mapStateToProps, { getItems, deleteItem })(ShoppingList);

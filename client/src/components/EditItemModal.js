@@ -44,11 +44,11 @@ class EditItemModal extends React.Component {
     render() {
         return(
             <div className="shopping-btn">
-                <Button color="primary"
+                { this.props.isAuthenticated ? <Button color="primary"
                 size="sm"
                 className="shopping-btn"
                 onClick={this.toggle}
-                >Edit</Button>
+                >Edit</Button> : ''}
 
                 <Modal
                  isOpen={this.state.modal}
@@ -82,10 +82,12 @@ class EditItemModal extends React.Component {
 
 EditItemModal.propTypes = {
     editItem: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool
 }
 
 const mapStateToProps = (state) => ({
-    item: state.item
+    item: state.item,
+    isAuthenticated: state.auth.isAuthenticated
 })
 
 export default connect(mapStateToProps, { editItem })(EditItemModal);
